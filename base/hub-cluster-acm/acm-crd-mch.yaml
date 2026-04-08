@@ -1,0 +1,44 @@
+apiVersion: operator.open-cluster-management.io/v1
+kind: MultiClusterHub
+metadata:
+  name: multiclusterhub
+  namespace: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    installer.open-cluster-management.io/mce-subscription-spec: '{"installPlanApproval":
+      "Manual"}'
+spec:
+  disableUpdateClusterImageSets: true
+  availabilityConfig: High
+  overrides:
+    components:
+      - name: app-lifecycle
+        enabled: true
+      - name: cluster-backup
+        enabled: true
+      - name: cluster-lifecycle
+        enabled: true
+      - name: cluster-permission
+        enabled: true
+      - name: cnv-mtv-integrations
+        enabled: true
+      - name: console
+        enabled: true
+      - name: fine-grained-rbac
+        enabled: true
+      - name: grc
+        enabled: true
+      - name: insights
+        enabled: true
+      - name: multicluster-engine
+        enabled: true
+      - name: multicluster-observability
+        enabled: true
+      - name: search
+        enabled: true
+      - name: submariner-addon
+        enabled: true
+      - name: volsync
+        enabled: true
+  separateCertificateManagement: false

@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: acm-policies
+  namespace: openshift-gitops
+spec:
+  clusterResourceWhitelist:
+  - group: ""
+    kind: Namespace
+  destinations:
+  #only the policies namespaces on the local server
+  - namespace: "policies"
+    server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: ""
+    kind: ConfigMap
+  - group: ""
+    kind: Namespace
+  - group: apps.open-cluster-management.io
+    kind: PlacementRule
+  - group: cluster.open-cluster-management.io
+    kind: Placement
+  - group: policy.open-cluster-management.io
+    kind: Policy
+  - group: policy.open-cluster-management.io
+    kind: PlacementBinding
+  - group: ran.openshift.io
+    kind: PolicyGenTemplate
+  - group: policy.open-cluster-management.io
+    kind: PolicySet
+  - group: policy.open-cluster-management.io
+    kind: OperatorPolicy
+  sourceRepos: []

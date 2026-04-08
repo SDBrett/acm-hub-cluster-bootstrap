@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-applications
+  namespace: openshift-gitops
+spec:
+# If we don't ignore changes in channel then we cannot use Policy to upgrade the Subscriptions as Argo will clobber policy changes.
+  ignoreDifferences:
+  - group: operators.coreos.com
+    kind: Subscription
+    jsonPointers:
+    - /spec/channel
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: openshift-gitops/applications
+    repoURL: ""
+    targetRevision: main
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - preserveResourcesOnDeletion=true
+    automated:
+      prune: true
+      selfHeal: true
