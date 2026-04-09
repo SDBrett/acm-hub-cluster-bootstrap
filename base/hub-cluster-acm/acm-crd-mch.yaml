@@ -46,7 +46,7 @@ spec:
       - name: multicluster-observability
         enabled: false
         configOverrides: {}
-      - name: search-collector
+      - name: search
         enabled: false
         configOverrides: {}
       - name: submariner-addon
