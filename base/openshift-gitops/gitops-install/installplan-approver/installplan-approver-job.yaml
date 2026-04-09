@@ -13,31 +13,59 @@ spec:
             - |
               export HOME=/tmp/approver
 
-              echo "Approving operator install.  Waiting a few seconds to make sure the InstallPlan gets created first."
-              sleep $SLEEP
-              for subscription in `oc get subscriptions.operators.coreos.com -o jsonpath='{.items[*].metadata.name}'`
-              do
-                echo "Processing subscription '$subscription'"
+              echo "Checking if subscription '$SUBSCRIPTION_NAME' exists"
 
-                installplan=$(oc get subscriptions.operators.coreos.com --field-selector metadata.name=${subscription} -o jsonpath='{.items[0].status.installPlanRef.name}')
+              for i in $(seq 1 $RETRIES); do
+                echo "Attempt $i of $RETRIES"
 
-                echo "Check installplan approved status"
-                oc get installplan $installplan -o jsonpath="{.spec.approved}"
-
-                if [ "`oc get installplan $installplan -o jsonpath="{.spec.approved}"`" == "false" ]; then
-
-                  echo "Approving Subscription $subscription with install plan $installplan"
-
-                  oc patch installplan $installplan --type=json -p='[{"op":"replace","path": "/spec/approved", "value": true}]'
-
-                else
-                  echo "Install Plan '$installplan' already approved"
+                if oc get subscriptions.operators.coreos.com "$SUBSCRIPTION_NAME" >/dev/null 2>&1; then
+                  echo "Subscription found"
+                  break
                 fi
+                if [ "$i" -eq "$RETRIES" ]; then
+                  echo "Subscription not found after $RETRIES attempts, exiting"
+                  exit 1
+                fi
+                echo "Subscription not found, will try again in $SLEEP seconds"
+                sleep "$SLEEP"
               done
+
+              echo "Waiting for installplan reference on subscription '$SUBSCRIPTION_NAME'"
+              installplan=""
+              for i in $(seq 1 $RETRIES); do
+                echo "InstallPlan ref attempt $i of $RETRIES"
+                installplan=$(oc get subscriptions.operators.coreos.com "$SUBSCRIPTION_NAME" -o jsonpath='{.status.installPlanRef.name}')
+                if [ -n "$installplan" ]; then
+                  echo "Found installplan $installplan"
+                  break
+                fi
+                if [ "$i" -eq "$RETRIES" ]; then
+                  echo "InstallPlan reference not set after $RETRIES attempts, exiting"
+                  exit 1
+                fi
+                echo "InstallPlan not ready yet, waiting $SLEEP seconds"
+                sleep "$SLEEP"
+              done
+
+              approved=$(oc get installplan "$installplan" -o jsonpath="{.spec.approved}")
+              if [ "$approved" = "false" ]; then
+                echo "Approving install plan $installplan"
+                oc patch installplan "$installplan" --type=json -p='[{"op":"replace","path": "/spec/approved", "value": true}]'
+              elif [ "$approved" = "true" ]; then
+                echo "Install Plan '$installplan' already approved"
+              else
+                echo "Unexpected approved state '$approved' for installplan $installplan, exiting"
+                exit 1
+              fi
+
           imagePullPolicy: Always
           name: installplan-approver
           env:
+            - name: SUBSCRIPTION_NAME
+              value: "openshift-gitops-operator"
             - name: SLEEP
+              value: "30"
+            - name: RETRIES
               value: "20"
       dnsPolicy: ClusterFirst
       restartPolicy: OnFailure

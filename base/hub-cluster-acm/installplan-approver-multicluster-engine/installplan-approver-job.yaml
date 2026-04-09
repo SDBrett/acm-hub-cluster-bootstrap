@@ -13,12 +13,12 @@ spec:
             - |
               export HOME=/tmp/approver
 
-              echo "Checking if multicluster-engine subscription exists"
+              echo "Checking if subscription '$SUBSCRIPTION_NAME' exists"
 
               for i in $(seq 1 $RETRIES); do
                 echo "Attempt $i of $RETRIES"
 
-                if oc get subscriptions.operators.coreos.com multicluster-engine >/dev/null 2>&1; then
+                if oc get subscriptions.operators.coreos.com "$SUBSCRIPTION_NAME" >/dev/null 2>&1; then
                   echo "Subscription found"
                   break
                 fi
@@ -30,11 +30,11 @@ spec:
                 sleep "$SLEEP"
               done
 
-              echo "Waiting for installplan reference on multicluster-engine subscription"
+              echo "Waiting for installplan reference on subscription '$SUBSCRIPTION_NAME'"
               installplan=""
               for i in $(seq 1 $RETRIES); do
                 echo "InstallPlan ref attempt $i of $RETRIES"
-                installplan=$(oc get subscriptions.operators.coreos.com multicluster-engine -o jsonpath='{.status.installPlanRef.name}')
+                installplan=$(oc get subscriptions.operators.coreos.com "$SUBSCRIPTION_NAME" -o jsonpath='{.status.installPlanRef.name}')
                 if [ -n "$installplan" ]; then
                   echo "Found installplan $installplan"
                   break
@@ -61,6 +61,8 @@ spec:
           imagePullPolicy: Always
           name: installplan-approver
           env:
+            - name: SUBSCRIPTION_NAME
+              value: "multicluster-engine"
             - name: SLEEP
               value: "30"
             - name: RETRIES
