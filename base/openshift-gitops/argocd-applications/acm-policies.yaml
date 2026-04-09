@@ -9,8 +9,8 @@ spec:
     namespace: openshift-gitops
   project: acm-policies
   source:
-    path: ""
-    repoURL: ""
+    path: environments/production
+    repoURL: "https://github.com/SDBrett/acm-ocpv-policy-samples"
     targetRevision: main
   syncPolicy:
     automated:

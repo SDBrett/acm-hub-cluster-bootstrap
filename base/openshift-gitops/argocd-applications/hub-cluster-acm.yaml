@@ -5,7 +5,6 @@ metadata:
   name: hub-cluster-acm
   namespace: openshift-gitops
 spec:
-# If we don't ignore changes in channel then we cannot use Policy to upgrade the Subscriptions as Argo will clobber policy changes.
   ignoreDifferences:
   - group: operators.coreos.com
     kind: Subscription
@@ -14,10 +13,10 @@ spec:
   destination:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
-  project: default
+  project: acm-deploy
   source:
-    path: base/openshift-gitops/hub-cluster-acm
-    repoURL: ""
+    path: base/hub-cluster-acm
+    repoURL: "https://github.com/SDBrett/acm-hub-cluster-bootstrap"
     targetRevision: main
   syncPolicy:
     syncOptions:
