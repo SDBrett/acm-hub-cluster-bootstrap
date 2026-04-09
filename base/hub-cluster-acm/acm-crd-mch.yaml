@@ -49,6 +49,9 @@ spec:
       - name: search
         enabled: false
         configOverrides: {}
+      - name: siteconfig
+        enabled: false
+        configOverrides: {}
       - name: submariner-addon
         enabled: false
         configOverrides: {}
