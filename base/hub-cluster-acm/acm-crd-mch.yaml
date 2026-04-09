@@ -15,30 +15,44 @@ spec:
     components:
       - name: app-lifecycle
         enabled: true
+        configOverrides: {}
       - name: cluster-backup
-        enabled: true
+        enabled: false
+        configOverrides: {}
       - name: cluster-lifecycle
         enabled: true
+        configOverrides: {}
       - name: cluster-permission
         enabled: true
+        configOverrides: {}
       - name: cnv-mtv-integrations
-        enabled: true
+        enabled: false
+        configOverrides: {}
       - name: console
         enabled: true
+        configOverrides: {}
       - name: fine-grained-rbac
-        enabled: true
+        enabled: false
+        configOverrides: {}
       - name: grc
         enabled: true
+        configOverrides: {}
       - name: insights
-        enabled: true
+        enabled: false
+        configOverrides: {}
       - name: multicluster-engine
         enabled: true
+        configOverrides: {}
       - name: multicluster-observability
-        enabled: true
-      - name: search
-        enabled: true
+        enabled: false
+        configOverrides: {}
+      - name: search-collector
+        enabled: false
+        configOverrides: {}
       - name: submariner-addon
-        enabled: true
+        enabled: false
+        configOverrides: {}
       - name: volsync
-        enabled: true
+        enabled: false
+        configOverrides: {}
   separateCertificateManagement: false
