@@ -29,7 +29,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ztp-cwl
+  name: multicluster-engine
   labels:
     argocd.argoproj.io/managed-by: openshift-gitops
   annotations:
