@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - appproject-acm-policies.yaml
   - gitops-root-instance.yaml
-  - root-application.yaml
