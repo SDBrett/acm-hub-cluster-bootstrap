@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: acm-deploy
+  namespace: openshift-gitops
+spec:
+  clusterResourceWhitelist:
+  - group: ""
+    kind: Namespace
+  destinations:
+    - namespace: open-cluster-management
+      server: https://kubernetes.default.svc
+    - namespace: multicluster-engine
+      server: https://kubernetes.default.svc
+    - namespace: openshift-gitops
+      server: https://kubernetes.default.svc
+    - namespace: policies
+      server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: ""
+    kind: ConfigMap
+  - group: ""
+    kind: ServiceAccount
+  - group: batch
+    kind: Job
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+  - group: rbac.authorization.k8s.io
+    kind: Role
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+  - group: operators.coreos.com
+    kind: Subscription
+  - group: operators.coreos.com
+    kind: OperatorGroup
+  - group: cluster.open-cluster-management.io
+    kind: ManagedClusterSetBinding
+  - group: operator.open-cluster-management.io
+    kind: MultiClusterHub
+  sourceRepos:
+  - https://github.com/SDBrett/acm-hub-cluster-bootstrap

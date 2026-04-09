@@ -30,4 +30,5 @@ spec:
     kind: PolicySet
   - group: policy.open-cluster-management.io
     kind: OperatorPolicy
-  sourceRepos: []
+  sourceRepos:
+    - https://github.com/SDBrett/acm-ocpv-policy-samples
