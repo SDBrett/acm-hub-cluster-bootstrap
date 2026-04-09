@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: policies
   project: acm-policies
   source:
     path: environments/production
@@ -18,3 +18,4 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+    
