@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: openshift-gitops-operator
 
 resources:
-- serviceaccount.yaml
-- rbac.yaml
-- installplan-approver-job.yaml
+  - serviceaccount.yaml
+  - rbac.yaml
+  - installplan-approver-job.yaml

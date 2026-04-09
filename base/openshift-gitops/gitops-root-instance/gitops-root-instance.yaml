@@ -9,11 +9,11 @@ spec:
   statusBadgeEnabled: true
   resourceIgnoreDifferences:
     resourceIdentifiers:
-    - group: openshift.io
-      kind: route
-      customization:
-        jsonPointers:
-        - /spec/host
+      - group: openshift.io
+        kind: route
+        customization:
+          jsonPointers:
+            - /spec/host
   resourceExclusions: |
     - apiGroups:
       - tekton.dev
@@ -46,16 +46,16 @@ spec:
       - name: POLICY_GEN_ENABLE_HELM
         value: "true"
     initContainers:
-    - args:
-        - -c
-        - cp /policy-generator/PolicyGenerator-not-fips-compliant /policy-generator-tmp/PolicyGenerator
-      command:
-        - /bin/bash
-      image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9:v2.16
-      name: policy-generator-install
-      volumeMounts:
-        - name: policy-generator
-          mountPath: /policy-generator-tmp
+      - args:
+          - -c
+          - cp /policy-generator/PolicyGenerator-not-fips-compliant /policy-generator-tmp/PolicyGenerator
+        command:
+          - /bin/bash
+        image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9:v2.16
+        name: policy-generator-install
+        volumeMounts:
+          - name: policy-generator
+            mountPath: /policy-generator-tmp
     volumeMounts:
       - name: policy-generator
         mountPath: /etc/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator

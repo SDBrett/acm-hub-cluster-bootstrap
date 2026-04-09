@@ -5,30 +5,30 @@ metadata:
   namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:
-  - group: ""
-    kind: Namespace
+    - group: ""
+      kind: Namespace
   destinations:
-  #only the policies namespaces on the local server
-  - namespace: "policies"
-    server: https://kubernetes.default.svc
+    #only the policies namespaces on the local server
+    - namespace: "policies"
+      server: https://kubernetes.default.svc
   namespaceResourceWhitelist:
-  - group: ""
-    kind: ConfigMap
-  - group: ""
-    kind: Namespace
-  - group: apps.open-cluster-management.io
-    kind: PlacementRule
-  - group: cluster.open-cluster-management.io
-    kind: Placement
-  - group: policy.open-cluster-management.io
-    kind: Policy
-  - group: policy.open-cluster-management.io
-    kind: PlacementBinding
-  - group: ran.openshift.io
-    kind: PolicyGenTemplate
-  - group: policy.open-cluster-management.io
-    kind: PolicySet
-  - group: policy.open-cluster-management.io
-    kind: OperatorPolicy
+    - group: ""
+      kind: ConfigMap
+    - group: ""
+      kind: Namespace
+    - group: apps.open-cluster-management.io
+      kind: PlacementRule
+    - group: cluster.open-cluster-management.io
+      kind: Placement
+    - group: policy.open-cluster-management.io
+      kind: Policy
+    - group: policy.open-cluster-management.io
+      kind: PlacementBinding
+    - group: ran.openshift.io
+      kind: PolicyGenTemplate
+    - group: policy.open-cluster-management.io
+      kind: PolicySet
+    - group: policy.open-cluster-management.io
+      kind: OperatorPolicy
   sourceRepos:
     - https://github.com/SDBrett/acm-ocpv-policy-samples

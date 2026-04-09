@@ -4,9 +4,9 @@ kind: Kustomization
 
 # list of Resource Config to be Applied
 resources:
-- namespace.yaml
-- gitops-operator.yaml
-- gitops-rbac.yaml
-#- git-secrets-template.yaml
-- crb-manageclusterset-admin-gitops-sa.yaml
-- installplan-approver
+  - namespace.yaml
+  - gitops-operator.yaml
+  - gitops-rbac.yaml
+  #- git-secrets-template.yaml
+  - crb-manageclusterset-admin-gitops-sa.yaml
+  - installplan-approver
