@@ -1,27 +1,21 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hub-cluster-acm
+  name: root-application
   namespace: openshift-gitops
 spec:
-  ignoreDifferences:
-  - group: operators.coreos.com
-    kind: Subscription
-    jsonPointers:
-    - /spec/channel
   destination:
-    namespace: openshift-gitops
     server: https://kubernetes.default.svc
+    namespace: openshift-gitops
   project: default
   source:
-    path: base/hub-cluster-acm
+    path: base/openshift-gitops/argocd-applications
     repoURL: "https://github.com/SDBrett/acm-hub-cluster-bootstrap"
     targetRevision: main
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-    - preserveResourcesOnDeletion=true
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    
