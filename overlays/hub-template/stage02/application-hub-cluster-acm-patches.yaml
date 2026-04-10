@@ -5,6 +5,8 @@ metadata:
   namespace: openshift-gitops
 spec:
   source:
+    repoURL: "HUB_CLUSTER_BOOTSTRAP_REPO_URL"
+    targetRevision: ""
     kustomize:
       patches:
         - target:
@@ -14,4 +16,5 @@ spec:
           patch: |-
             - op: add
               path: /spec/localClusterName
-              value: hub02
+              value: HUB_CLUSTER_NAME
+ 

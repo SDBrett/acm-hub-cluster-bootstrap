@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../base/openshift-gitops/gitops-root-instance/
+  - ../../../base/openshift-gitops/argocd-applications/
+
+patches:
+  - path: application-acm-policies-patches.yaml
+    target:
+      kind: Application
+      name: acm-policies
+      namespace: openshift-gitops
+  - path: application-hub-cluster-acm-patches.yaml
+    target:
+      kind: Application
+      name: hub-cluster-acm
+      namespace: openshift-gitops
+  - path: appproject-acm-policies-patches.yaml
+    target:
+      kind: AppProject
+      name: acm-policies
+      namespace: openshift-gitops

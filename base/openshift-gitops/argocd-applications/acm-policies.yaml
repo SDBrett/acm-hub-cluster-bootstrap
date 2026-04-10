@@ -10,8 +10,8 @@ spec:
   project: acm-policies
   source:
     path: environments/production
-    repoURL: "https://github.com/SDBrett/acm-ocpv-policy-samples"
-    targetRevision: main
+    repoURL: ""
+    targetRevision: ""
   syncPolicy:
     automated:
       prune: true

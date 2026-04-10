@@ -1,0 +1,8 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: acm-policies
+  namespace: openshift-gitops
+spec:
+  sourceRepos:
+    - "FAKE_REPO_URL"

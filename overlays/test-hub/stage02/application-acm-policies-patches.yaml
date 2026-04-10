@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: acm-policies
+  namespace: openshift-gitops
+spec:
+  source:
+    path: environments/production
+    repoURL: "https://github.com/SDBrett/acm-ocpv-policy-samples"
+    targetRevision: main
+ 

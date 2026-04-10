@@ -16,7 +16,7 @@ spec:
   project: default
   source:
     path: base/hub-cluster-acm
-    repoURL: "https://github.com/SDBrett/acm-hub-cluster-bootstrap"
+    repoURL: ""
     targetRevision: main
   syncPolicy:
     syncOptions:

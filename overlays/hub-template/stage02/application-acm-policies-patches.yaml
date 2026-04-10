@@ -1,0 +1,10 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: acm-policies
+  namespace: openshift-gitops
+spec:
+  source:
+    path: environments/production
+    repoURL: "POLICIES_REPO_URL"
+    targetRevision: ""
