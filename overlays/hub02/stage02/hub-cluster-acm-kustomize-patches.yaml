@@ -15,6 +15,3 @@ spec:
             - op: add
               path: /spec/localClusterName
               value: hub02
-            - op: add
-              path: /spec/availabilityConfig
-              value: Basic
