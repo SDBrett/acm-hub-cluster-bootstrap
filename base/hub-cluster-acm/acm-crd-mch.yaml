@@ -17,7 +17,7 @@ spec:
         enabled: true
         configOverrides: {}
       - name: cluster-backup
-        enabled: false
+        enabled: true
         configOverrides: {}
       - name: cluster-lifecycle
         enabled: true
@@ -38,24 +38,24 @@ spec:
         enabled: true
         configOverrides: {}
       - name: insights
-        enabled: false
+        enabled: true
         configOverrides: {}
       - name: multicluster-engine
         enabled: true
         configOverrides: {}
       - name: multicluster-observability
-        enabled: false
+        enabled: true
         configOverrides: {}
       - name: search
-        enabled: false
+        enabled: true
         configOverrides: {}
       - name: siteconfig
         enabled: false
         configOverrides: {}
       - name: submariner-addon
-        enabled: false
+        enabled: true
         configOverrides: {}
       - name: volsync
-        enabled: false
+        enabled: true
         configOverrides: {}
   separateCertificateManagement: false
