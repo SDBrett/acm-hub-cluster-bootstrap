@@ -7,6 +7,5 @@ resources:
   - namespace.yaml
   - gitops-operator.yaml
   - gitops-rbac.yaml
-  #- git-secrets.yaml
   - crb-manageclusterset-admin-gitops-sa.yaml
   - installplan-approver
