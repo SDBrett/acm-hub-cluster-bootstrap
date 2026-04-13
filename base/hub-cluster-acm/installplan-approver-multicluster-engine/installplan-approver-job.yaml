@@ -8,10 +8,10 @@ metadata:
     job-name: installplan-approver
 spec:
   template:
-    spec:
-      metadata:
-        labels:
-          job-name: installplan-approver
+    metadata:
+      labels:
+        job-name: installplan-approver
+    spec: 
       containers:
         - image: registry.redhat.io/openshift4/ose-cli-rhel9:v4.20
           command:
