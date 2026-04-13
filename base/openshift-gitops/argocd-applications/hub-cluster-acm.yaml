@@ -10,6 +10,7 @@ spec:
       kind: Subscription
       jsonPointers:
         - /spec/channel
+        - /spec/installPlanApproval
   destination:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
