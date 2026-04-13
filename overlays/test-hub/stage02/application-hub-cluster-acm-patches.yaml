@@ -24,13 +24,13 @@ spec:
               path: /spec/overrides/components
               value:
                 - name: app-lifecycle
-                  enabled: false
+                  enabled: true
                   configOverrides: {}
                 - name: cluster-backup
                   enabled: false
                   configOverrides: {}
                 - name: cluster-lifecycle
-                  enabled: false
+                  enabled: true
                   configOverrides: {}
                 - name: cluster-permission
                   enabled: false
