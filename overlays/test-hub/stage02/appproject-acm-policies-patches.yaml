@@ -5,4 +5,4 @@ metadata:
   namespace: openshift-gitops
 spec:
   sourceRepos:
-    - "FAKE_REPO_URL"
+    - "https://github.com/SDBrett/acm-ocpv-policy-samples"

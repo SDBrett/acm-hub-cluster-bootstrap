@@ -1,0 +1,55 @@
+apiVersion: operator.open-cluster-management.io/v1
+kind: MultiClusterHub
+metadata:
+  name: multiclusterhub
+  namespace: open-cluster-management
+spec:
+  localClusterName: test-hub
+  availabilityConfig: Basic
+  overrides:
+    components:
+      - name: app-lifecycle
+        enabled: true
+        configOverrides: {}
+      - name: cluster-backup
+        enabled: false
+        configOverrides: {}
+      - name: cluster-lifecycle
+        enabled: true
+        configOverrides: {}
+      - name: cluster-permission
+        enabled: false
+        configOverrides: {}
+      - name: cnv-mtv-integrations
+        enabled: false
+        configOverrides: {}
+      - name: console
+        enabled: true
+        configOverrides: {}
+      - name: fine-grained-rbac
+        enabled: false
+        configOverrides: {}
+      - name: grc
+        enabled: true
+        configOverrides: {}
+      - name: insights
+        enabled: false
+        configOverrides: {}
+      - name: multicluster-engine
+        enabled: true
+        configOverrides: {}
+      - name: multicluster-observability
+        enabled: false
+        configOverrides: {}
+      - name: search
+        enabled: false
+        configOverrides: {}
+      - name: siteconfig
+        enabled: false
+        configOverrides: {}
+      - name: submariner-addon
+        enabled: false
+        configOverrides: {}
+      - name: volsync
+        enabled: false
+        configOverrides: {}
