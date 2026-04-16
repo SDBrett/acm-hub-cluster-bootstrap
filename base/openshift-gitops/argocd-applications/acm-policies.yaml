@@ -9,9 +9,9 @@ spec:
     namespace: policies
   project: acm-policies
   source:
-    path: environments/production
-    repoURL: ""
-    targetRevision: ""
+    path: "POLICIES_PATH"
+    repoURL: "POLICIES_REPO_URL"
+    targetRevision: "POLICIES_REVISION"
   syncPolicy:
     automated:
       prune: true

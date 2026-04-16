@@ -16,9 +16,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: base/hub-cluster-acm
-    repoURL: ""
-    targetRevision: main
+    path: "HUB_CLUSTER_ACM_PATH"
+    repoURL: "HUB_CLUSTER_ACM_REPO_URL"
+    targetRevision: "HUB_CLUSTER_ACM_REVISION"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
